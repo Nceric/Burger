@@ -1,9 +1,13 @@
 const express = require("express");
-const burger = require("./models/burger.js");
+const burger = require("../public/models/burger.js");
 
 var router = express.Router();
 
-router.get("/", function(req, res) {
+router.get("/", (req,res) => {
+    res.redirect("/api/burgers");
+});
+
+router.get("/api/burgers", function(req, res) {
     burger.selectBurger(function(data) {
       var hdbrsObj = {
         burgers: data
@@ -11,17 +15,19 @@ router.get("/", function(req, res) {
       console.log(hdbrsObj);
       res.render("index", hdbrsObj);
     });
+});
   
     router.post("/api/burgers", function(req, res) {
       burger.insertBurger(
-        ["burger_name", "devoured"],
-        [req.body.burger_name, req.body.devoured],
+        ["burgernname", "devoured"],
+        [req.body.burgername, req.body.devoured],
         function(result) {
           
           res.json({ id: result.insertId });
         }
       );
     });
+
     router.put("/api/burgers/:id", function(req, res) {
       var condition = "id = " + req.params.id;
   
@@ -49,6 +55,6 @@ router.get("/", function(req, res) {
         }
       });
     });
-  });
+
   
   module.exports = router;
