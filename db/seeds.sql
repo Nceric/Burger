@@ -1,3 +1,3 @@
-INSERT INTO burgers (burgername) VALUES ('McDouble');
-INSERT INTO burgers (burgername) VALUES ('QuarterPounder');
-INSERT INTO burgers (burgername) VALUES ('Whopper');
+INSERT INTO burgers (burgername) VALUES ('McDouble', false);
+INSERT INTO burgers (burgername) VALUES ('QuarterPounder', false);
+INSERT INTO burgers (burgername) VALUES ('Whopper', false);
